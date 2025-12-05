@@ -12,7 +12,12 @@ function Post() {
 
   const handleSubmit = async (values, { resetForm }) => {
     const { title, body, userId } = values;
-    const payload = { title, body, userId };
+    const payload = { 
+      userId: title, body, userId,
+      title: title,
+      body: body,
+      company: 'SRS Live Technologies Private Limited'
+     };
 
     try {
       const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
