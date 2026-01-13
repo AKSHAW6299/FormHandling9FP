@@ -3,20 +3,20 @@ import React, { useState } from "react";
 const SimpleForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
   const [submittedData, setSubmittedData] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (name.trim() === "" && email.trim() === "" && address.trim() === "") return;
+    // Prevent submission if both fields are empty
+    if (name.trim() === "" && email.trim() === "") return;
 
-    const newEntry = { name, email, address };
+    const newEntry = { name, email };
     setSubmittedData((prev) => [...prev, newEntry]);
 
+    // Clear form
     setName("");
     setEmail("");
-    setAddress("");
   };
 
   return (
@@ -50,17 +50,6 @@ const SimpleForm = () => {
             />
           </div>
 
-          <div className="flex flex-col flex-1">
-            <label htmlFor="address" className="mb-1">Address:</label>
-            <input
-              type="text"
-              id="address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              className="border px-2 py-1 rounded w-full"
-            />
-          </div>
-
           <button
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-2 sm:mt-0"
@@ -86,10 +75,6 @@ const SimpleForm = () => {
               <div>
                 <span className="font-medium">Email: </span>
                 <span>{data.email}</span>
-              </div>
-              <div>
-                <span className="font-medium">Address: </span>
-                <span>{data.address}</span>
               </div>
             </div>
           </div>
